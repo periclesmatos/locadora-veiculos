@@ -1,0 +1,91 @@
+package com.pericles.locadora_veiculos.model;
+
+import jakarta.persistence.*;
+
+import java.math.BigDecimal;
+
+@Entity
+@Table(name = "veiculos")
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Veiculo {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, length = 10, unique = true)
+    private String placa;
+
+    @Column(nullable = false, length = 80)
+    private String modelo;
+
+    @Column(nullable = false, length = 80)
+    private String marca;
+
+    @Column(nullable = false)
+    private int ano;
+
+    @Column(name = "valor_diaria", nullable = false, precision = 10, scale = 2)
+    private BigDecimal valorDiaria;
+
+    @Column(nullable = false)
+    private boolean disponivel;
+
+    @Column(nullable = false)
+    private boolean ativo;
+
+    public Veiculo() {}
+
+    public Veiculo(
+            Long id,
+            String placa,
+            String modelo,
+            String marca,
+            int ano,
+            BigDecimal valorDiaria,
+            boolean disponivel,
+            boolean ativo
+    ) {
+        this.id = id;
+        this.placa = placa;
+        this.modelo = modelo;
+        this.marca = marca;
+        this.ano = ano;
+        this.valorDiaria = valorDiaria;
+        this.disponivel = disponivel;
+        this.ativo = ativo;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public BigDecimal getValorDiaria() {
+        return valorDiaria;
+    }
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+}
