@@ -1,6 +1,8 @@
 package com.pericles.locadora_veiculos.model;
 
+import com.pericles.locadora_veiculos.dto.veiculo.VeiculoUpdate;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 
 import java.math.BigDecimal;
 
@@ -39,8 +41,8 @@ public abstract class Veiculo {
     public Veiculo(
             Long id,
             String placa,
-            String modelo,
             String marca,
+            String modelo,
             int ano,
             BigDecimal valorDiaria,
             boolean disponivel,
@@ -48,13 +50,15 @@ public abstract class Veiculo {
     ) {
         this.id = id;
         this.placa = placa;
-        this.modelo = modelo;
         this.marca = marca;
+        this.modelo = modelo;
         this.ano = ano;
         this.valorDiaria = valorDiaria;
         this.disponivel = disponivel;
         this.ativo = ativo;
     }
+
+    public abstract BigDecimal calcularValorDiaria();
 
     public Long getId() {
         return id;
@@ -64,20 +68,16 @@ public abstract class Veiculo {
         return placa;
     }
 
-    public String getModelo() {
-        return modelo;
-    }
-
     public String getMarca() {
         return marca;
     }
 
-    public int getAno() {
-        return ano;
+    public String getModelo() {
+        return modelo;
     }
 
-    public BigDecimal getValorDiaria() {
-        return valorDiaria;
+    public int getAno() {
+        return ano;
     }
 
     public boolean isDisponivel() {
@@ -88,4 +88,19 @@ public abstract class Veiculo {
         return ativo;
     }
 
+    protected BigDecimal getValorDiaria() {
+        return valorDiaria;
+    }
+
+    protected void atualizarCom(@Valid VeiculoUpdate dto) {
+        if (dto.placa() != null) this.placa = dto.placa();
+        if (dto.modelo() != null) this.modelo = dto.modelo();
+        if (dto.marca() != null) this.marca = dto.marca();
+        if (dto.ano() != null) this.ano = dto.ano();
+        if (dto.valorDiaria() != null) this.valorDiaria = dto.valorDiaria();
+    }
+
+    public void desativar() {
+        this.ativo = false;
+    }
 }
