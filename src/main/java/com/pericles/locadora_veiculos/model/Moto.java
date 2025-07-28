@@ -1,9 +1,13 @@
 package com.pericles.locadora_veiculos.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 import java.math.BigDecimal;
 
+@Entity
+@Table(name = "motos")
 public class Moto extends Veiculo{
 
     private static final BigDecimal TAXA_ALTA_CILINDRADA = BigDecimal.valueOf(30);

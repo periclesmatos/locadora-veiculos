@@ -4,7 +4,6 @@ import com.pericles.locadora_veiculos.dto.carro.CarroUpdate;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import jakarta.validation.Valid;
 
 import java.math.BigDecimal;
 
