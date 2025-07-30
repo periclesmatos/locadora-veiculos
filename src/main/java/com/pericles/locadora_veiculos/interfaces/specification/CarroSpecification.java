@@ -1,7 +1,7 @@
-package com.pericles.locadora_veiculos.specification;
+package com.pericles.locadora_veiculos.interfaces.specification;
 
-import com.pericles.locadora_veiculos.dto.carro.CarroFiltro;
-import com.pericles.locadora_veiculos.model.Carro;
+import com.pericles.locadora_veiculos.interfaces.dto.carro.CarroFiltro;
+import com.pericles.locadora_veiculos.domain.model.Carro;
 import org.springframework.data.jpa.domain.Specification;
 import jakarta.persistence.criteria.Predicate;
 

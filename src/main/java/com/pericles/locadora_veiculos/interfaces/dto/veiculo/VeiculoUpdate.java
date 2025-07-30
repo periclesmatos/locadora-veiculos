@@ -1,19 +1,21 @@
-package com.pericles.locadora_veiculos.dto.veiculo;
+package com.pericles.locadora_veiculos.interfaces.dto.veiculo;
 
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 
-public record VeiculoRequest(
-        @NotBlank(message = "Placa é obrigatória")
+public record VeiculoUpdate(
+        Long id,
+
         @Size(max = 10, message = "Placa deve ter no máximo 10 caracteres")
         String placa,
 
-        @NotBlank(message = "Marca é obrigatória")
         @Size(max = 80)
         String marca,
 
-        @NotBlank(message = "Modelo é obrigatório")
         @Size(max = 80)
         String modelo,
 
@@ -21,7 +23,6 @@ public record VeiculoRequest(
         @Max(value = 2100, message = "Ano inválido")
         Integer ano,
 
-        @NotNull(message = "Valor da diária é obrigatório")
         @DecimalMin(value = "0.0", inclusive = false, message = "Valor da diária deve ser positivo")
         BigDecimal valorDiaria
 ) {

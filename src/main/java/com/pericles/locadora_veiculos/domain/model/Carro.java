@@ -1,6 +1,6 @@
-package com.pericles.locadora_veiculos.model;
+package com.pericles.locadora_veiculos.domain.model;
 
-import com.pericles.locadora_veiculos.dto.carro.CarroUpdate;
+import com.pericles.locadora_veiculos.interfaces.dto.carro.CarroUpdate;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -24,18 +24,15 @@ public class Carro extends Veiculo{
     }
 
     public Carro(
-            Long id,
             String placa,
             String marca,
             String modelo,
             int ano,
             BigDecimal valorDiaria,
-            boolean disponivel,
-            boolean ativo,
             int quantidadePortas,
             boolean arCondicionado
     ) {
-        super(id, placa, marca, modelo, ano, valorDiaria, disponivel, ativo);
+        super(placa, marca, modelo, ano, valorDiaria);
         this.quantidadePortas = quantidadePortas;
         this.arCondicionado = arCondicionado;
     }

@@ -1,4 +1,4 @@
-package com.pericles.locadora_veiculos.dto.veiculo;
+package com.pericles.locadora_veiculos.interfaces.dto.veiculo;
 
 import java.math.BigDecimal;
 

@@ -1,7 +1,7 @@
-package com.pericles.locadora_veiculos.specification;
+package com.pericles.locadora_veiculos.interfaces.specification;
 
-import com.pericles.locadora_veiculos.dto.veiculo.VeiculoFiltro;
-import com.pericles.locadora_veiculos.model.Veiculo;
+import com.pericles.locadora_veiculos.interfaces.dto.veiculo.VeiculoFiltro;
+import com.pericles.locadora_veiculos.domain.model.Veiculo;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;

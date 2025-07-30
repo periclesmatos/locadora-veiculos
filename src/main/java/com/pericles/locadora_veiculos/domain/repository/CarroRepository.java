@@ -1,6 +1,6 @@
-package com.pericles.locadora_veiculos.repository;
+package com.pericles.locadora_veiculos.domain.repository;
 
-import com.pericles.locadora_veiculos.model.Carro;
+import com.pericles.locadora_veiculos.domain.model.Carro;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;

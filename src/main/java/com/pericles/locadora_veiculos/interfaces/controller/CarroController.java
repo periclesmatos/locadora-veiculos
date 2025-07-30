@@ -1,11 +1,10 @@
-package com.pericles.locadora_veiculos.controller;
+package com.pericles.locadora_veiculos.interfaces.controller;
 
-import com.pericles.locadora_veiculos.dto.carro.CarroFiltro;
-import com.pericles.locadora_veiculos.dto.carro.CarroRequest;
-import com.pericles.locadora_veiculos.dto.carro.CarroResponse;
-import com.pericles.locadora_veiculos.dto.carro.CarroUpdate;
-import com.pericles.locadora_veiculos.model.Carro;
-import com.pericles.locadora_veiculos.service.CarroService;
+import com.pericles.locadora_veiculos.interfaces.dto.carro.CarroFiltro;
+import com.pericles.locadora_veiculos.interfaces.dto.carro.CarroRequest;
+import com.pericles.locadora_veiculos.interfaces.dto.carro.CarroResponse;
+import com.pericles.locadora_veiculos.interfaces.dto.carro.CarroUpdate;
+import com.pericles.locadora_veiculos.application.service.CarroService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -26,37 +25,33 @@ public class CarroController {
 
     @PostMapping
     public ResponseEntity<CarroResponse> criar(@RequestBody @Valid CarroRequest request, UriComponentsBuilder uriBuilder) {
-        Carro carro = carroService.salvar(request);
+        CarroResponse response = carroService.salvar(request);
         URI uri = uriBuilder
                 .path("/carros/{id}")
-                .buildAndExpand(carro.getId())
+                .buildAndExpand(response.veiculoResponse().id())
                 .toUri();
-        CarroResponse response = new CarroResponse(carro);
         return ResponseEntity.created(uri).body(response);
     }
 
-    @GetMapping("/filtro")
+    @GetMapping
     public ResponseEntity<Page<CarroResponse>> buscarComFiltro(
             @ModelAttribute @Valid CarroFiltro filtro,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
-        Page<Carro> carros = carroService.buscarComFiltro(filtro, page, size);
-        Page<CarroResponse> responses = carros.map(CarroResponse::new);
+        Page<CarroResponse> responses = carroService.buscarComFiltro(filtro, page, size);
         return ResponseEntity.ok(responses);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CarroResponse> buscarPorId(@RequestParam Long id) {
-        Carro carro = carroService.buscarPorId(id);
-        CarroResponse response = new CarroResponse(carro);
+    @GetMapping("/{id:[0-9]+}")
+    public ResponseEntity<CarroResponse> buscarPorId(@PathVariable Long id) {
+        CarroResponse response = carroService.buscarPorId(id);
         return ResponseEntity.ok(response);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<CarroResponse> atualizar(@RequestBody @Valid CarroUpdate request, Long id) {
-        Carro carro = carroService.atualizar(request, id);
-        CarroResponse response = new CarroResponse(carro);
+        CarroResponse response = carroService.atualizar(request, id);
         return ResponseEntity.ok(response);
     }
 
@@ -65,6 +60,5 @@ public class CarroController {
         carroService.deletar(id);
         return ResponseEntity.noContent().build();
     }
-
 
 }

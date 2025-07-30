@@ -1,6 +1,6 @@
-package com.pericles.locadora_veiculos.model;
+package com.pericles.locadora_veiculos.domain.model;
 
-import com.pericles.locadora_veiculos.dto.veiculo.VeiculoUpdate;
+import com.pericles.locadora_veiculos.interfaces.dto.veiculo.VeiculoUpdate;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 
@@ -39,23 +39,19 @@ public abstract class Veiculo {
     public Veiculo() {}
 
     public Veiculo(
-            Long id,
             String placa,
             String marca,
             String modelo,
             int ano,
-            BigDecimal valorDiaria,
-            boolean disponivel,
-            boolean ativo
+            BigDecimal valorDiaria
     ) {
-        this.id = id;
         this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;
         this.valorDiaria = valorDiaria;
-        this.disponivel = disponivel;
-        this.ativo = ativo;
+        this.disponivel = true;
+        this.ativo = true;
     }
 
     public abstract BigDecimal calcularValorDiaria();

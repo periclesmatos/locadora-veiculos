@@ -1,4 +1,4 @@
-package com.pericles.locadora_veiculos.model;
+package com.pericles.locadora_veiculos.domain.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
