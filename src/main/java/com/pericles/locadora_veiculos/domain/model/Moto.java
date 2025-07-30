@@ -21,17 +21,14 @@ public class Moto extends Veiculo{
     }
 
     public Moto(
-            Long id,
             String placa,
             String modelo,
             String marca,
             int ano,
             BigDecimal valorDiaria,
-            boolean disponivel,
-            boolean ativo,
             int cilidradas
     ) {
-        super(id, placa, modelo, marca, ano, valorDiaria, disponivel, ativo);
+        super(placa, modelo, marca, ano, valorDiaria);
         this.cilidradas = cilidradas;
     }
 

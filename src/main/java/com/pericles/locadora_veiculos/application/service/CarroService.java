@@ -28,7 +28,7 @@ public class CarroService {
     public Carro buscarEntidadePorId(Long id) {
         return carroRepository
                 .buscarCarroAtivoPorId(id)
-                .orElseThrow(() -> new RuntimeException("Cliente com ID " + id + " iniativo ou não encontrado."));
+                .orElseThrow(() -> new RuntimeException("Carro com ID " + id + " inativo ou não encontrado."));
     }
 
     @Transactional

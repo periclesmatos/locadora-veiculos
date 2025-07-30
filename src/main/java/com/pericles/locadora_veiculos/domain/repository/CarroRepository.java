@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface CarroRepository extends JpaRepository<Carro, Long>, JpaSpecificationExecutor<Carro> {
 
-    @Query("SELECT c FROM Carro c WHERE c.id = :id AND c.ativo = true")
+    @Query("SELECT c FROM Carro c WHERE c.ativo = true AND c.id = :id")
     Optional<Carro> buscarCarroAtivoPorId(@Param("id") Long id);
 
 }

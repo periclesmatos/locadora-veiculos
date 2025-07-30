@@ -50,13 +50,13 @@ public class CarroController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CarroResponse> atualizar(@RequestBody @Valid CarroUpdate request, Long id) {
+    public ResponseEntity<CarroResponse> atualizar(@RequestBody @Valid CarroUpdate request, @PathVariable Long id) {
         CarroResponse response = carroService.atualizar(request, id);
         return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<CarroResponse> deletar(@RequestParam Long id) {
+    public ResponseEntity<CarroResponse> deletar(@PathVariable Long id) {
         carroService.deletar(id);
         return ResponseEntity.noContent().build();
     }
