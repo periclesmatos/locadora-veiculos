@@ -3,12 +3,12 @@ package com.pericles.locadora_veiculos.interfaces.dto.veiculo;
 import java.math.BigDecimal;
 
 public record VeiculoResponse(
-        Long id,
+        long id,
         String placa,
         String marca,
         String modelo,
-        Integer ano,
+        int ano,
         BigDecimal valorDiaria,
-        Boolean disponivel
+        boolean disponivel
 ) {
 }

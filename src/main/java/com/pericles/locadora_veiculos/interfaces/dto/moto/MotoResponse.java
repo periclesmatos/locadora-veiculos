@@ -1,12 +1,11 @@
-package com.pericles.locadora_veiculos.interfaces.dto.carro;
+package com.pericles.locadora_veiculos.interfaces.dto.moto;
 
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.pericles.locadora_veiculos.interfaces.dto.veiculo.VeiculoResponse;
 
-public record CarroResponse(
+public record MotoResponse(
         @JsonUnwrapped
         VeiculoResponse veiculoResponse,
-        int quantidadePortas,
-        boolean arCondicionado
+        int cilindradas
 ) {
 }
