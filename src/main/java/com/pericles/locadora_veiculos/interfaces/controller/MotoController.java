@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
+
 @RestController
 @RequestMapping("/motos")
 public class MotoController {
 
-    private MotoService motoService;
+    private final MotoService motoService;
 
     public MotoController(MotoService motoService) {
         this.motoService = motoService;
@@ -24,7 +26,11 @@ public class MotoController {
     @PostMapping
     public ResponseEntity<MotoResponse> criar(@RequestBody @Valid MotoRequest request, UriComponentsBuilder uriBuilder) {
         MotoResponse response = motoService.salvar(request);
-
+        URI uri = uriBuilder
+                .path("motos/{id}")
+                .buildAndExpand(response.veiculoResponse().id())
+                .toUri();
+        return ResponseEntity.created(uri).body(response);
     }
 
 }
