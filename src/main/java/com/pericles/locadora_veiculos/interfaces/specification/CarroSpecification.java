@@ -13,19 +13,9 @@ public class CarroSpecification {
     public static Specification<Carro> comFiltro(CarroFiltro filtro) {
         return ((root, query, criteriaBuilder) -> {
             List<Predicate> predicates =  new ArrayList<>();
-
-            if (filtro.veiculoFiltro() != null) {
-                VeiculoSpecification.adicionarPredicados(filtro.veiculoFiltro(), root, criteriaBuilder, predicates);
-            }
-
-            if (filtro.quantidadePortas() != null) {
-                predicates.add(criteriaBuilder.equal(root.get("quantidadePortas"), filtro.quantidadePortas()));
-            }
-
-            if (filtro.arCondicionado() != null) {
-                predicates.add(criteriaBuilder.equal(root.get("arCondicionado"), filtro.arCondicionado()));
-            }
-
+            if (filtro.veiculoFiltro() != null) VeiculoSpecification.adicionarPredicados(filtro.veiculoFiltro(), root, criteriaBuilder, predicates);
+            if (filtro.quantidadePortas() != null) predicates.add(criteriaBuilder.equal(root.get("quantidadePortas"), filtro.quantidadePortas()));
+            if (filtro.arCondicionado() != null) predicates.add(criteriaBuilder.equal(root.get("arCondicionado"), filtro.arCondicionado()));
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         });
     }
