@@ -88,7 +88,7 @@ public abstract class Veiculo {
         return valorDiaria;
     }
 
-    protected void atualizarCom(@Valid VeiculoUpdate dto) {
+    protected void atualizarCom(VeiculoUpdate dto) {
         if (dto.placa() != null) this.placa = dto.placa();
         if (dto.modelo() != null) this.modelo = dto.modelo();
         if (dto.marca() != null) this.marca = dto.marca();

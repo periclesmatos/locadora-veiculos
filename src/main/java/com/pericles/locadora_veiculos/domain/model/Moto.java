@@ -1,5 +1,6 @@
 package com.pericles.locadora_veiculos.domain.model;
 
+import com.pericles.locadora_veiculos.interfaces.dto.moto.MotoUpdate;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -43,6 +44,11 @@ public class Moto extends Veiculo{
 
     public int getCilidradas() {
         return cilidradas;
+    }
+
+    public void atualizarCom(MotoUpdate dto) {
+        if (dto.veiculoUpdate() != null) super.atualizarCom(dto.veiculoUpdate());
+        if (dto.cilindradas() != null) this.cilidradas = dto.cilindradas();
     }
 
 }

@@ -23,7 +23,6 @@ public class VeiculoSpecification {
         if (filtro.disponivel() != null) predicates.add(criteriaBuilder.equal(root.get("disponivel"), filtro.disponivel()));
         if (filtro.valorDiariaMin() != null) predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("valorDiaria"), filtro.valorDiariaMin()));
         if (filtro.valorDiariaMax() != null) predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("valorDiaria"), filtro.valorDiariaMax()));
-        predicates.add(criteriaBuilder.equal(root.get("ativo"), true));
     }
 
 }

@@ -43,7 +43,7 @@ public class CarroController {
         return ResponseEntity.ok(responses);
     }
 
-    @GetMapping("/{id:[0-9]+}")
+    @GetMapping("/{id}")
     public ResponseEntity<CarroResponse> buscarPorId(@PathVariable Long id) {
         CarroResponse response = carroService.buscarPorId(id);
         return ResponseEntity.ok(response);
