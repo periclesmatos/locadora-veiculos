@@ -1,0 +1,24 @@
+package com.pericles.locadora_veiculos.modules.veiculo.interfaces.specification;
+
+import com.pericles.locadora_veiculos.modules.veiculo.interfaces.dto.filter.CarroFilter;
+import com.pericles.locadora_veiculos.modules.veiculo.domain.model.Carro;
+import org.springframework.data.jpa.domain.Specification;
+import jakarta.persistence.criteria.Predicate;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class CarroSpecification {
+
+    public static Specification<Carro> comFiltro(CarroFilter filtro) {
+        return ((root, query, criteriaBuilder) -> {
+            List<Predicate> predicates =  new ArrayList<>();
+            if (filtro.veiculoFiltro() != null) VeiculoSpecification.adicionarPredicados(filtro.veiculoFiltro(), root, criteriaBuilder, predicates);
+            if (filtro.quantidadePortas() != null) predicates.add(criteriaBuilder.equal(root.get("quantidadePortas"), filtro.quantidadePortas()));
+            if (filtro.arCondicionado() != null) predicates.add(criteriaBuilder.equal(root.get("arCondicionado"), filtro.arCondicionado()));
+            predicates.add(criteriaBuilder.equal(root.get("ativo"), true));
+            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+        });
+    }
+
+}
